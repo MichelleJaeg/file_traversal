@@ -31,19 +31,19 @@ def main ():
                     seen boolean NOT NULL DEFAULT 0,
                     rootid INTEGER REFERENCES rootdir(id))
                 ''')
-    curs.execute('SELECT rootdir FROM rootdir;')
+    curs.execute('SELECT rootdir FROM paths;')
     conn.commit()
     rootdir_rows = curs.fetchall()
 
 
-    for rootpath in rootdir_rows:
-        rootpath = str(rootpath)
-        rootpath = rootpath.replace(",", "")
-        rootpath = rootpath.strip("(, )")
-        rootpath = rootpath.strip("', '")
-        for path, dirs, files in os.walk(rootpath):
+    for root_path in rootdir_rows:
+        root_path = str(root_path)
+        root_path = root_path.replace(",", "")
+        root_path = root_path.strip("(, )")
+        root_path = root_path.strip("', '")
+        for path, dirs, files in os.walk(root_path):
             for f in files:
-                process_file(rootpath, path, f)
+                process_file(root_path, path, f)
 
     # Make lists of new and modified files
 
