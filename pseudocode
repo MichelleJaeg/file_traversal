@@ -1,0 +1,27 @@
+Overview:
+
+Program should go through a database table ("paths") of paths (such as home/Bob/Projects), and for each
+path, each file found on this path should be in another table called "location". The program
+should report on files that are new, modified, or deleted, and "location" should be updated
+accordingly.
+
+pseudocode:
+
+Assume table called "paths" is already created
+
+Connect to database
+Create table called "location", if not already created
+
+for each path in paths:
+    for each file in the path:
+        Obtain information about file and add to "location" or update information
+        Add file to list deleted, modified, or new file (or none) as appropriate
+
+print out files that are new
+print out files that have been modified
+print out files that have been deleted
+
+
+
+
+
